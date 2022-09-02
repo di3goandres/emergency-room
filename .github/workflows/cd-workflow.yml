@@ -17,7 +17,9 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Check Secrets
-        if: ${{ secrets.GCP_CREDENTIALS == '' }}
+        env:
+          secret: ${{ secrets.GCP_CREDENTIALS }}
+        if: ${{ env.secret == '' }}
         run: echo "The secret GCP_CREDENTIALS is not set"
       
       - id: 'auth'
