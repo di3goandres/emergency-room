@@ -31,7 +31,7 @@ jobs:
         uses: s4u/setup-maven-action@v1.5.0
         with:
           java-version: 11
-          maver-version: '3.8.4'
+          maven-version: '3.8.4'
         
       - name: Build Spring Project
         run: mvn package
