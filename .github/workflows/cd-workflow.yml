@@ -15,6 +15,10 @@ jobs:
     steps:
       - name: Checkout actions
         uses: actions/checkout@v3
+
+      - name: Check Secrets
+        if: ${{ secrets.GCP_CREDENTIALS == '' }}
+        run: echo "The secret GCP_CREDENTIALS is not set"
       
       - id: 'auth'
         name: Authenticate to Google Cloud
