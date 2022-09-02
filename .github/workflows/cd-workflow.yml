@@ -32,6 +32,7 @@ jobs:
         with:
           java-version: 11
           maver-version: '3.8.4'
+        run: mvn package
       
       - name: Build Docker Image
         run: docker build -t $IMAGE_NAME:latest .
