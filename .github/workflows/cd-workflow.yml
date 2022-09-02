@@ -16,17 +16,11 @@ jobs:
       - name: Checkout actions
         uses: actions/checkout@v3
 
-      - name: Check Secrets
-        env:
-          secret: ${{ secrets.GCP_CREDENTIALS }}
-        if: ${{ env.secret == '' }}
-        run: echo "The secret GCP_CREDENTIALS is not set"
-      
       - id: 'auth'
         name: Authenticate to Google Cloud
         uses: google-github-actions/auth@v0
         with:
-          credentials_json: ${{ secrets.GCP_CREDENTIALS }}
+          credentials_json: ${{ secrets.GCP_CEDENTIALS }}
       
       - name: Setup Google Cloud Project
         uses: google-github-actions/setup-gcloud@v0
