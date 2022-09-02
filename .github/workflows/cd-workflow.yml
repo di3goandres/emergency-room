@@ -2,6 +2,7 @@
 name: Build, Push to Artifact Registry and Deploy to Google Kubernetes Engine
 on:
   push:
+    branches: [ master ]
 
 env:
   PROJECT_ID: ${{ secrets.PROJECT_ID }}
