@@ -57,7 +57,7 @@ public interface ScopeUtils {
         LOCAL("local"),
 
         TEST("test"),
-        STAGE("staging"),
+        STAGE("stage"),
         PROD("prod");
 
 
