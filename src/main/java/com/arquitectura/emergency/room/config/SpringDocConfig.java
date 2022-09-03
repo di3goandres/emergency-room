@@ -18,7 +18,6 @@ import static java.lang.String.format;
 public class SpringDocConfig {
     private static final String LOCAL_URL = "http://localhost:8080";
 
-    private static final String HEROKU_URL = "https://reto1-emergency-room.herokuapp.com/";
     /**
      * Creates a bean with OpenApi configurations.
      *
@@ -36,7 +35,7 @@ public class SpringDocConfig {
                 .description(description)
                 .contact(new Contact().name("emergency-room")
                         .email("d3egoandres@gmail.com")));
-        api.addServersItem(new Server().url(ScopeUtils.isLocalScope() ? LOCAL_URL : HEROKU_URL)
+        api.addServersItem(new Server().url(LOCAL_URL)
                 .description(format("Scope %s", ScopeUtils.SCOPE_VALUE)));
         return api;
     }
