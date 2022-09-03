@@ -1,5 +1,7 @@
 package com.arquitectura.emergency.room.util;
 
+import org.apache.commons.lang3.StringUtils;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -7,14 +9,18 @@ import java.util.Optional;
  * Utility class for scope information.
  */
 public interface ScopeUtils {
+    String PORT = "PORT";
     String SCOPE = "SCOPE";
     String SCOPE_VALUE = System.getenv(SCOPE);
+
+    String PORT_VALUE = System.getenv(PORT);
     String SPRING_PROFILE = "SCOPE_SUFFIX";
 
     List<String> productionScopes = List.of(Profiles.PROD.getName());
 
     static void calculateScope() {
         System.setProperty(SPRING_PROFILE, getSpringProfile(SCOPE_VALUE));
+        System.setProperty(PORT, getPort(PORT_VALUE));
     }
 
     static String getSpringProfile(String scope) {
@@ -27,8 +33,16 @@ public interface ScopeUtils {
         } else if (scope.contains(Profiles.PROD.getName())) {
             return Profiles.PROD.getName();
         }
-
         return Profiles.LOCAL.getName();
+    }
+
+
+    static String getPort(String port) {
+        if (Optional.ofNullable(port).isEmpty() || !StringUtils.isNumeric(port)) {
+            return Ports.LOCAL.getPort();
+        } else{
+            return port;
+        }
     }
 
     static boolean isLocalScope() {
@@ -57,4 +71,17 @@ public interface ScopeUtils {
             return name;
         }
         }
+    enum Ports {
+        LOCAL("8080");
+
+        private String name;
+
+        Ports(String name) {
+            this.name = name;
+        }
+        public String getPort() {
+            return name;
+        }
+    }
+
 }
