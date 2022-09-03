@@ -1,9 +1,10 @@
+---
 name: Deploy to heroku.
 
 on:
   push:
-    # tags:
-    #   - "[0-9]+.[0-9]+.[0-9]+-a[0-9]+"
+    tags:
+      - "[0-9]+.[0-9]+.[0-9]+-a[0-9]+"
 
 jobs:
   build:
@@ -11,6 +12,13 @@ jobs:
     steps:
       - name: Checkout Actions.
         uses: actions/checkout@v2
+
+      - name: Get Tag.
+        id: tag
+        uses: dawidd6/action-get-tag@v1
+
+      - name: Use Tag.
+        run: echo ${{steps.tag.outputs.tag}}
 
       - name: Setup Maven
         uses: s4u/setup-maven-action@v1.5.0
