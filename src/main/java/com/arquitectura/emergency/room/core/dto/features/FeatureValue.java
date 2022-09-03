@@ -1,4 +1,4 @@
-package com.arquitectura.emergency.room.core.dto.signal;
+package com.arquitectura.emergency.room.core.dto.features;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -11,7 +11,7 @@ import lombok.Setter;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class Signal {
-    private String signal;
-    private String value;
+public class FeatureValue {
+    private Double value;
+    private String units;
 }
