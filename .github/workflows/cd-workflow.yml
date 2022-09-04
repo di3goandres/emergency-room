@@ -12,7 +12,7 @@ env:
   REPOSITORY: ${{ secrets.REPOSITORY }}
   IMAGE_FILE: .docker/production.Dockerfile
   DEPLOYMENT_NAME: emergency-deploy
-  CLUSTER_NAME: ${{ CLUSTER_NAME }}
+  CLUSTER_NAME: ${{ secrets.CLUSTER_NAME }}
 
 jobs:
   build-push-to-artifact-registry:
@@ -64,7 +64,7 @@ jobs:
           docker push $REGION-docker.pkg.dev/$PROJECT_ID/$REPOSITORY/$IMAGE_NAME:$GIT_TAG
 
   deploy-to-google-kubernetes-engine:
-    needs: build-push-artifact-registry
+    needs: build-push-to-artifact-registry
     name: Deploy to Kubernetes Engine
     runs-on: ubuntu-latest
     steps:
@@ -83,7 +83,7 @@ jobs:
           kustomize-version: 4.5.4
 
       - name: Deploy
-        working-directory: kubernetes
+        working-directory: .kubernetes
         run: |-
           kustomize edit set image REGION-docker.pkg.dev/PROJECT_ID/REPOSITORY/IMAGE_NAME:latest=$REGION-docker.pkg.dev/$PROJECT_ID/$REPOSITORY/$IMAGE_NAME:latest
           cat kustomization.yaml
