@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: emergency-deploy
+
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: emergency-room-app
+  template:
+    metadata:
+      labels:
+        app: emergency-room-app
+    spec:
+      containers:
+        - name: emergency-room-app
+          image: REGION-docker.pkg.dev/PROJECT_ID/REPOSITORY/IMAGE_NAME:latest
+          ports:
+            - containerPort: 8080
+          env:
+            - name: PORT
+              value: "8080"
