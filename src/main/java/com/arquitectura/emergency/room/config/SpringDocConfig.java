@@ -16,8 +16,6 @@ import static java.lang.String.format;
  */
 @Configuration
 public class SpringDocConfig {
-    private static final String LOCAL_URL = "http://localhost:8080";
-
     /**
      * Creates a bean with OpenApi configurations.
      *
@@ -35,8 +33,6 @@ public class SpringDocConfig {
                 .description(description)
                 .contact(new Contact().name("emergency-room")
                         .email("d3egoandres@gmail.com")));
-        api.addServersItem(new Server().url(LOCAL_URL)
-                .description(format("Scope %s", ScopeUtils.SCOPE_VALUE)));
         return api;
     }
 }
