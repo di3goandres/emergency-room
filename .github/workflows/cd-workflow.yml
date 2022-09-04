@@ -12,7 +12,7 @@ env:
   REPOSITORY: ${{ secrets.REPOSITORY }}
   IMAGE_FILE: .docker/production.Dockerfile
   DEPLOYMENT_NAME: emergency-deploy
-  CLUSTER_NAME: ${{ CLUSTER_NAME }}
+  CLUSTER_NAME: ${{ secrets.CLUSTER_NAME }}
 
 jobs:
   build-push-to-artifact-registry:
