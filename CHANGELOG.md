@@ -1,5 +1,8 @@
 # **Changelog**
 
+## **v0.2.2**
+- Deployment jobs fixed
+
 ## **v0.2.1**
 - Deployment fix
 

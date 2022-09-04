@@ -64,7 +64,7 @@ jobs:
           docker push $REGION-docker.pkg.dev/$PROJECT_ID/$REPOSITORY/$IMAGE_NAME:$GIT_TAG
 
   deploy-to-google-kubernetes-engine:
-    needs: build-push-artifact-registry
+    needs: build-push-to-artifact-registry
     name: Deploy to Kubernetes Engine
     runs-on: ubuntu-latest
     steps:
