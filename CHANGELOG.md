@@ -1,5 +1,8 @@
 # **Changelog**
 
+## **v0.2.3**
+- Deployment directory changed.
+
 ## **v0.2.2**
 - Deployment jobs fixed
 
